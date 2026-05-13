@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: produto-service
+
+  rabbitmq:
+    port: 5672
+    addresses: amqps://voowobdz:oPXu8xSnc3nXS_GlD6QR2wg9nz1afCdY@jackal.rmq.cloudamqp.com/voowobdz
+
+  datasource:
+    url: jdbc:postgresql://localhost:5435/produtos
+    username: docker
+    password: docker
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+
+server:
+  port: 9092

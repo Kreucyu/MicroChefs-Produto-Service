@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProdutoService {
@@ -26,7 +27,11 @@ public class ProdutoService {
     }
 
     public RecoveryProdutoDTO buscarProduto(long id) {
-        return null;
+        Produto produto = produtoRepository.findById(id).orElseThrow();
+        return new RecoveryProdutoDTO(produto.getNomeProduto(),
+                produto.getDescricaoProduto(),
+                produto.getQuantidadeEmEstoque(),
+                produto.getPrecoProduto());
     }
 
     public List<RecoveryProdutoDTO> listarProdutos() {

@@ -16,6 +16,11 @@ public class ProdutoService {
 
     public List<RecoveryProdutoDTO> listarProdutos() {
         List<Produto> produtos = produtoRepository.findAll();
-        return produtos.stream().forEach(p -> new RecoveryProdutoDTO());
+        return produtos
+                .stream()
+                .map(p -> new RecoveryProdutoDTO(p.getNomeProduto(),
+                        p.getDescricaoProduto(), p.getQuantidadeEmEstoque(),
+                        p.getPrecoProduto()))
+                .toList();
     }
 }

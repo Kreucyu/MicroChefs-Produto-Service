@@ -20,6 +20,11 @@ public class ProdutoController {
         return ResponseEntity.status(HttpStatus.CREATED).body(produtoService.criarProduto(novoProduto));
     }
 
+    @GetMapping("buscar/{id}")
+    public ResponseEntity<RecoveryProdutoDTO> buscarProduto(@PathVariable long id) {
+        return ResponseEntity.ok().body(produtoService.buscarProduto(id));
+    }
+
     @GetMapping("/listar")
     public ResponseEntity<List<RecoveryProdutoDTO>> listarProdutos() {
         return ResponseEntity.ok().body(produtoService.listarProdutos());

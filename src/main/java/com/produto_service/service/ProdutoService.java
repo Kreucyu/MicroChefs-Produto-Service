@@ -1,5 +1,6 @@
 package com.produto_service.service;
 
+import com.produto_service.dto.CreateProdutoDTO;
 import com.produto_service.dto.RecoveryProdutoDTO;
 import com.produto_service.entities.Produto;
 import com.produto_service.repository.ProdutoRepository;
@@ -22,5 +23,10 @@ public class ProdutoService {
                         p.getDescricaoProduto(), p.getQuantidadeEmEstoque(),
                         p.getPrecoProduto()))
                 .toList();
+    }
+
+    public CreateProdutoDTO criarProduto(CreateProdutoDTO novoProduto) {
+        Produto produto = new Produto();
+        produto.setDescricaoProduto(novoProduto.);
     }
 }

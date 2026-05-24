@@ -15,6 +15,6 @@ public class ProdutoController {
     ProdutoService produtoService;
     @GetMapping
     public ResponseEntity<List<RecoveryProdutoDTO>> listarProdutos() {
-        return ResponseEntity.ok().body(produtoService.listarProdutos);
+        return ResponseEntity.ok().body(produtoService.listarProdutos());
     }
 }

@@ -15,6 +15,20 @@ public class ProdutoService {
     @Autowired
     ProdutoRepository produtoRepository;
 
+    public CreateProdutoDTO criarProduto(CreateProdutoDTO novoProduto) {
+        Produto produto = new Produto();
+        produto.setNomeProduto(novoProduto.nomeProduto());
+        produto.setDescricaoProduto(novoProduto.descricaoProduto());
+        produto.setQuantidadeEmEstoque(novoProduto.quantidadeEmEstoque());
+        produto.setPrecoProduto(novoProduto.precoProduto());
+        produtoRepository.save(produto);
+        return novoProduto;
+    }
+
+    public RecoveryProdutoDTO buscarProduto(long id) {
+        return null;
+    }
+
     public List<RecoveryProdutoDTO> listarProdutos() {
         List<Produto> produtos = produtoRepository.findAll();
         return produtos
@@ -25,8 +39,5 @@ public class ProdutoService {
                 .toList();
     }
 
-    public CreateProdutoDTO criarProduto(CreateProdutoDTO novoProduto) {
-        Produto produto = new Produto();
-        produto.setDescricaoProduto(novoProduto.);
-    }
+
 }

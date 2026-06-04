@@ -1,6 +1,6 @@
 package com.produto_service.dto;
 
-public record UpdateProdutoDto(
+public record UpdateProdutoDTO(
         long id,
         int quantidade
 ) {

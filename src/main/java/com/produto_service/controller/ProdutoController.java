@@ -29,4 +29,10 @@ public class ProdutoController {
     public ResponseEntity<List<RecoveryProdutoDTO>> listarProdutos() {
         return ResponseEntity.ok().body(produtoService.listarProdutos());
     }
+
+    @DeleteMapping("/deletar/{id}")
+    public ResponseEntity<String> deletarProduto(@PathVariable long id) {
+        produtoService.deletarProduto(id);
+        return ResponseEntity.ok().body("Produto deletado com sucesso");
+    }
 }

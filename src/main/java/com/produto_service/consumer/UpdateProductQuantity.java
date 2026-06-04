@@ -21,7 +21,7 @@ public class UpdateProductQuantity {
     @Autowired
     private ObjectMapper objectMapper;
 
-    @RabbitListener(queues = "pedido-queue")
+    @RabbitListener(queues = "produto-queue")
     public void receberAtualizacao(@Payload String updateJson) {
         try {
             UpdateProdutoDTO update = converterMensagemJSON(updateJson);

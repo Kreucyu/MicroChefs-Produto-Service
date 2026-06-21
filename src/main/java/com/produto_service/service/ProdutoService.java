@@ -98,6 +98,7 @@ public class ProdutoService {
                 JSON,
                 LocalDateTime.now()
         );
+        System.out.println("çprod");
         produtoProducer.dlqSender(dlqSupportDTO);
         System.out.println(dlqSupportDTO);
     }

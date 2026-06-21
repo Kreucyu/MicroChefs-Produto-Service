@@ -24,9 +24,13 @@ public class UpdateProductQuantity {
     @RabbitListener(queues = "produto-queue")
     public void receberAtualizacao(@Payload String updateJson) {
         try {
+            System.out.println(updateJson);
+            System.out.println(converterMensagemJSON(updateJson));
             UpdateProdutoDTO update = converterMensagemJSON(updateJson);
+            System.out.println("update chegou");
             produtoService.removerDoEstoque(update.id(), update.quantidade());
         } catch (ErroProdutoException | InfraException e) {
+            System.out.println("catch");
             produtoService.processarErro(e, updateJson);
         }
     }

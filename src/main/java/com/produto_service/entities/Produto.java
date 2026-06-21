@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Table(name = "produtos")
+@Entity
 @Getter
 @Setter
 @ToString

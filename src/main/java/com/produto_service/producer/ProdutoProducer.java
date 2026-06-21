@@ -16,6 +16,7 @@ public class ProdutoProducer {
     private ObjectMapper objectMapper;
 
     public void dlqSender(DLQSupportDTO dlqSupportDTO) {
+        System.out.println(1);
         amqpTemplate.convertAndSend(
                 "dead-letter-exchange",
                 "dead-message",

@@ -2,10 +2,13 @@ package com.produto_service.dto;
 
 import lombok.NonNull;
 
+import java.io.Serializable;
+
 public record RecoveryProdutoDTO(
-        @NonNull String nomeProduto,
-        @NonNull String descricaoProduto,
-        @NonNull int quantidadeEmEstoque,
-        @NonNull double precoProduto
-) {
+        Long id,
+        String nomeProduto,
+        String descricaoProduto,
+        int quantidadeEmEstoque,
+        double precoProduto
+) implements Serializable {
 }

@@ -3,11 +3,16 @@ spring:
     name: produto-service
 
   rabbitmq:
-    port: 5672
-    addresses: amqps://voowobdz:oPXu8xSnc3nXS_GlD6QR2wg9nz1afCdY@jackal.rmq.cloudamqp.com/voowobdz
+    addresses: ${SPRING_RABBITMQ_ADDRESSES:jackal.rmq.cloudamqp.com}
+    username: ${SPRING_RABBITMQ_USERNAME:voowobdz}
+    password: ${SPRING_RABBITMQ_PASSWORD:oPXu8xSnc3nXS_GlD6QR2wg9nz1afCdY}
+    virtual-host: ${SPRING_RABBITMQ_VIRTUAL_HOST:voowobdz}
+    listener:
+      simple:
+        missing-queues-fatal: false
 
   datasource:
-    url: jdbc:postgresql://localhost:9007/produtos
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:9007/produtos}
     username: docker
     password: docker
     driver-class-name: org.postgresql.Driver
@@ -15,7 +20,20 @@ spring:
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
+
+  data:
+    redis:
+      host: ${SPRING_DATA_REDIS_HOST:localhost}
+      port: ${SPRING_DATA_REDIS_PORT:6379}
+
+  cache:
+    type: redis
 
 server:
-  port: 7777
+  port: ${SERVER_PORT:9002}
+
+api:
+  security:
+    token:
+      secret: ${JWT_KEY:CHAVE_SUPER_SECRETA_BPUI_123456789}

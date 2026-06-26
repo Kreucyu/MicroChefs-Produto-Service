@@ -6,6 +6,11 @@ public record CreateProdutoDTO(
         @NonNull String nomeProduto,
         @NonNull String descricaoProduto,
         @NonNull int quantidadeEmEstoque,
-        @NonNull double precoProduto
+        int quantidadeMinima,
+        @NonNull double precoProduto,
+        String imagem
 ) {
+    public CreateProdutoDTO(String nomeProduto, String descricaoProduto, int quantidadeEmEstoque, double precoProduto) {
+        this(nomeProduto, descricaoProduto, quantidadeEmEstoque, 0, precoProduto, null);
+    }
 }

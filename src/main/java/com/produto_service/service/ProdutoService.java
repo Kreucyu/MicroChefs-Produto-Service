@@ -24,6 +24,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ProdutoService {
@@ -120,6 +121,22 @@ public class ProdutoService {
 
             produto.setQuantidadeEmEstoque(novaQuantidade);
             produtoRepository.save(produto);
+            RecoveryProdutoDTO produtoAtualizado = new RecoveryProdutoDTO(
+                    produto.getId(),
+                    produto.getNomeProduto(),
+                    produto.getDescricaoProduto(),
+                    produto.getQuantidadeEmEstoque(),
+                    produto.getPrecoProduto()
+            );
+            var cacheProduto = cacheManager.getCache("produto");
+            if (cacheProduto != null) {
+                cacheProduto.put(id, produtoAtualizado);
+            }
+
+            var cacheLista = cacheManager.getCache("produtos");
+            if (cacheLista != null) {
+                cacheLista.clear();
+            }
 
             RecoveryProdutoDTO produtoAtualizado = toDto(produto);
             var cacheProduto = cacheManager.getCache("produto");
@@ -151,6 +168,7 @@ public class ProdutoService {
                 JSON,
                 LocalDateTime.now()
         );
+        System.out.println("çprod");
         produtoProducer.dlqSender(dlqSupportDTO);
         System.out.println(dlqSupportDTO);
     }

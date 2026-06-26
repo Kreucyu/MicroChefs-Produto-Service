@@ -2,6 +2,8 @@ package com.produto_service.dto;
 
 import lombok.NonNull;
 
+import java.io.Serializable;
+
 public record RecoveryProdutoDTO(
         long id,
         @NonNull String nomeProduto,
